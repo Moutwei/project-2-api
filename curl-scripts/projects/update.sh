@@ -9,7 +9,8 @@ curl "http://localhost:4741/projects/${ID}" \
       "mission": "'"${MISSION}"'",
       "target": "'"${TARGET}"'",
       "requirements": "'"${REQUIREMENTS}"'",
-      "status": "'"${STATUS}"'"
+      "status": "'"${STATUS}"'",
+      "leader_id": "'"${LEADER_ID}"'"
     }
   }'
 
