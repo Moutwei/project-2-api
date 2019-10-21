@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_191031) do
+ActiveRecord::Schema.define(version: 2019_10_21_145221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "task"
+    t.string "task_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
+  end
 
   create_table "examples", force: :cascade do |t|
     t.text "text", null: false
@@ -33,6 +43,18 @@ ActiveRecord::Schema.define(version: 2019_10_18_191031) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_leaders_on_user_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.string "task"
+    t.string "task_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.index ["project_id"], name: "index_members_on_project_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -59,8 +81,11 @@ ActiveRecord::Schema.define(version: 2019_10_18_191031) do
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
+  add_foreign_key "employees", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "leaders", "users"
+  add_foreign_key "members", "projects"
+  add_foreign_key "members", "users"
   add_foreign_key "projects", "leaders"
   add_foreign_key "projects", "users"
 end

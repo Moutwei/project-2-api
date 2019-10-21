@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :examples
   has_many :leaders
   has_many :projects
+  has_many :employees
 end
