@@ -8,7 +8,8 @@ curl "http://localhost:4741/employees" \
       "name": "'"${NAME}"'",
       "task": "'"${TASK}"'",
       "task_status": "'"${TASK_STATUS}"'",
-      "user_id": "'"${USER_ID}"'"
+      "user_id": "'"${USER_ID}"'",
+      "project_id": "'"${PROJECT_ID}"'"
     }
   }'
 
