@@ -1,23 +1,24 @@
 # frozen_string_literal: true
 
-class EmployeesController < ApplicationController
+class EmployeesController < ProtectedController
   before_action :set_employee, only: %i[show update destroy]
 
   # GET /employees
   def index
-    @employees = Employee.all
+    @employees = current_user.employees
 
     render json: @employees
   end
 
   # GET /employees/1
   def show
+    @employee = current_user.employees.find(params[:id])
     render json: @employee
   end
 
   # POST /employees
   def create
-    @employee = Employee.new(employee_params)
+    @employee = current_user.employees.build(params[:id])
 
     if @employee.save
       render json: @employee, status: :created, location: @employee
@@ -28,6 +29,7 @@ class EmployeesController < ApplicationController
 
   # PATCH/PUT /employees/1
   def update
+    @employee = current_user.employees.find(params[:id])
     if @employee.update(employee_params)
       render json: @employee
     else
@@ -37,6 +39,7 @@ class EmployeesController < ApplicationController
 
   # DELETE /employees/1
   def destroy
+    @employee = current_user.employees.find(params[:id])
     @employee.destroy
   end
 
@@ -44,7 +47,7 @@ class EmployeesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_employee
-    @employee = Employee.find(params[:id])
+    @employee = current_user.employees.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
