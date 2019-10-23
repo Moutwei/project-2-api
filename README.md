@@ -7,7 +7,7 @@ An application specifically designed for CEO like minded individuals that allows
 [Deployed Client](https://moutwei.github.io/project-2-client/)
 [Deployed API](https://polar-savannah-03316.herokuapp.com/)
 
-[Github Client](https://github.com/Moutwei/project-2-api)
+[Github Client](https://github.com/Moutwei/project-2-client)
 [Github API](https://github.com/Moutwei/project-2-api)
 
 # Technologies Used
