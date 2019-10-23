@@ -18,7 +18,7 @@ class EmployeesController < ProtectedController
 
   # POST /employees
   def create
-    @employee = current_user.employees.build(params[:id])
+    @employee = current_user.employees.build(employee_params)
 
     if @employee.save
       render json: @employee, status: :created, location: @employee
